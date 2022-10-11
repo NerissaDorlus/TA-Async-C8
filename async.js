@@ -1,19 +1,20 @@
 import fs from 'fs';
-
 const filename = 'file.txt';
-//callback
+
+// call back
 fs.readFile(filename, 'utf8', function (err, data) {
   console.log(data);
 });
 
-//promise/.then
-fs.readFile(filename, 'utf8').then((err, data) => {
+// promise (then)
+fs.promises.readFile(filename, 'utf8').then((data) => {
   console.log(data);
 });
 
-//async
+// async
 async function showText() {
-  const data = await fs.readFileSync(filename, 'utf8');
+  const data = await fs.promises.readFile(filename, 'utf8');
   return data;
 }
-console.log(showText());
+
+console.log(await showText());
